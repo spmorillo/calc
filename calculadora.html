@@ -26,6 +26,17 @@
           }
         );
         
+	 $("#raiz").on("click",
+          function(){
+            var n = $("#pantalla");
+            if(isNaN(n.val()) || n.val()<0){
+               n.val("Error");
+            }else{
+              n.val(Math.sqrt(n.val()));
+            }
+          }
+        );
+
          $("#limpiar").on("click",
           function(){
             t=0; opcion=""; sumado=false; restado=false;
@@ -48,6 +59,7 @@
         <input id="pantalla" type="text">
         <button id="cuadrado"> x<sup>2</sup> </button>
         <button id="limpiar"> Limpiar </button>
+	<button id="raiz"> sqrt(x) </button>
     </div>
     
   
