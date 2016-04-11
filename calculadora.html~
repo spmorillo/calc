@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>CORE2016 P3</title>
+    <link href="calculadora_files/normal.css" rel="stylesheet" type="text/css" media="all">
+    <script src="calculadora_files/jquery-2.js"></script>
+    <script type="text/javascript">  
+      var t=0; 
+      var opcion;
+      var sumado=false;
+      var restado=false;
+      $(function () {
+        $("#pantalla").on("click",
+          function(){ $("#pantalla").val("");}
+          );
+          
+        $("#cuadrado").on("click",
+          function(){
+            var n = $("#pantalla");
+            if(isNaN(n.val())){
+               n.val("Error");
+            }else{
+             n.val(n.val()*n.val());
+            }
+          }
+        );
+        
+         $("#inverso").on("click",
+          function(){
+            var n = $("#pantalla");
+            if(isNaN(n.val())){
+               n.val("Error");
+            }else{
+              n.val(1/n.val());
+            }
+          }
+        );
+        
+        $("#raiz").on("click",
+          function(){
+            var n = $("#pantalla");
+            if(isNaN(n.val()) || n.val()<0){
+               n.val("Error");
+            }else{
+              n.val(Math.sqrt(n.val()));
+            }
+          }
+        );
+        
+        $("#pentera").on("click",
+          function(){
+            var n = $("#pantalla");
+            if(isNaN(n.val())){
+               n.val("Error");
+            }else{
+              n.val(Math.round(n.val()));
+            }
+          }
+        );
+        
+        $("#potencia2").on("click",
+         function(){
+          var n = $("#pantalla");
+          if(isNaN(n.val())){
+               n.val("Error");
+            }else{
+            n.val(Math.pow(2,n.val()));
+          }
+         }
+       );
+       
+       $("#factorial").on("click",
+         function(){
+          var n = $("#pantalla");
+          if(isNaN(n.val()) || n.val()<0 || n.val()%1 !== 0 ){
+               n.val("Error");
+          }else if(n.val()>720){
+               n.val("Infinity");  
+          }else{
+              var i=n.val();
+              var r=1;
+                while(i>1){
+                r*=i;
+                i--;
+            }
+            n.val(r);
+          }
+         }
+       );
+       
+       $("#suma").on("click",
+          function(){
+             var n = $("#pantalla").val();
+            if(isNaN(n)){
+             $("#pantalla").val("Error");
+            }else if(sumado){
+              t= (+t + +n);
+            }else if(restado){
+              t= (+t - +n);
+            }else{
+              t = $("#pantalla").val();
+            }
+            opcion="suma";
+            sumado=true;
+            restado=false;
+          }
+        );
+        
+        $("#resta").on("click",
+          function(){
+            var n = $("#pantalla").val();
+           if(isNaN(n)){
+             $("#pantalla").val("Error");
+            }else if(sumado){
+              t= (+t + +n);
+            }else if(restado){
+              t= (+t - +n);
+            }else{
+              t = $("#pantalla").val();
+            }
+            opcion="resta";
+            sumado=false;
+            restado=true;
+          }
+        );
+        
+        $("#igual").on("click",
+          function(){
+            sumado=false; restado=false;
+            var n = $("#pantalla");
+            if(isNaN(n.val()) || isNaN(t)){
+               n.val("Error");
+            }else{
+              if(opcion==="suma"){
+                opcion="";
+                n.val(+n.val() + +t);
+              }else if(opcion==="resta"){
+                opcion="";
+                n.val(+t - +n.val());  
+              }
+            }
+          }
+        );
+        
+         $("#limpiar").on("click",
+          function(){
+            t=0; opcion=""; sumado=false; restado=false;
+            var n = $("#pantalla");
+            n.val("");
+          }
+        );
+        
+       });
+    </script>
+    
+    
+  </head>
+  
+  <body>
+  
+    <header>Sergio Pérez Morillo: <a href="mailto:s.pmorillo@alumnos.upm.es">s.pmorillo@alumnos.upm.es</a></header>
+    <div id="main"> 
+      Número:
+        <input id="pantalla" type="text">
+        <button id="cuadrado"> x<sup>2</sup> </button>
+        <button id="limpiar"> Limpiar </button>
+    </div>
+    
+  
+</body></html>
