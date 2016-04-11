@@ -25,6 +25,17 @@
             }
           }
         );
+
+	$("#cubo").on("click",
+          function(){
+            var n = $("#pantalla");
+            if(isNaN(n.val())){
+               n.val("Error");
+            }else{
+             n.val(n.val()*n.val()*n.val());
+            }
+          }
+        );
         
 	 $("#raiz").on("click",
           function(){
@@ -58,6 +69,7 @@
       Número:
         <input id="pantalla" type="text">
         <button id="cuadrado"> x<sup>2</sup> </button>
+	<button id="cubo"> x<sup>3</sup> </button>
         <button id="limpiar"> Limpiar </button>
 	<button id="raiz"> sqrt(x) </button>
     </div>
